@@ -76,8 +76,8 @@ def mesh_uv_wrap(mesh, maxIterations):
     
     myAtlas.generate(pack_options=pack_options, chart_options = chart_options)
 
-    #myImage = myAtlas.get_chart_image(0)        # Debug image of the first atlas
-    UVImage = Image.new('RGB',(1024,1024),"rgb(255,0,255)")
+    myImage = myAtlas.get_chart_image(0)        # Debug image of the first atlas
+    #UVImage = Image.new('RGB',(1024,1024),"rgb(255,0,255)")
     vmapping, indices, uvs = myAtlas[0]
 
     mesh.vertices = mesh.vertices[vmapping]
@@ -85,6 +85,6 @@ def mesh_uv_wrap(mesh, maxIterations):
     mesh.visual.uv = uvs
     
     UVImages=[]
-    UVImages.append(UVImage)
+    UVImages.append(myImage)
     
     return mesh, UVImages
