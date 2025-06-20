@@ -81,7 +81,8 @@ def mesh_uv_wrap(mesh, maxIterations):
     
     myWidth = myAtlas.width       # Width of the atlas 
     myHeight = myAtlas.height      # Height of the atlas
-    
+    print (myWidth)
+    print (myHeight)
     myImage = myAtlas.get_chart_image(0)        # Debug image of the first atlas
     UVImages = Image.fromarray(np.uint8(myImage)).convert('RGB')
     
