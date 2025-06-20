@@ -31,6 +31,8 @@ def mesh_uv_wrap(mesh, maxIterations):
     #chart_options.textureSeamWeight = 0.5
     #chart_options.maxCost = 2.0
     chart_options.maxIterations = maxIterations  #org = 1
+    
+    
     #chart_options.useInputMeshUvs =  False
     #chart_options.fixWinding = False
     
