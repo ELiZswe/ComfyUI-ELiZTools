@@ -15,7 +15,8 @@ def mesh_uv_wrap(mesh):
     #packOptions.resolution = 4096
     #packOptions.blockAlign = True
     #packOptions.bruteForce = True
-
+    packOptions.create_image = True
+    
     chartOptions = ChartOptions()
     #chartOptions.maxChartArea = 0.0
     #chartOptions.maxBoundaryLength = 0.0
