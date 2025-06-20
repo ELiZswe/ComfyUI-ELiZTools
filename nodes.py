@@ -2,7 +2,7 @@ import os
 #import torch
 #import torch.nn.functional as F
 #from pathlib import Path
-#import numpy as np
+import numpy as np
 #import json
 from PIL import Image
 import trimesh as Trimesh
