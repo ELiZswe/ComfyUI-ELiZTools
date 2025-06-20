@@ -73,7 +73,8 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations):
     #chart_options.maxCost = 1.0
     chart_options.max_chart_area = max_chart_area
     chart_options.max_cost = max_cost
-    chart_options.max_iterations = maxIterations  #org = 1
+    chart_options.max_iterations = maxIterations
+    chart_options.straightness_weight = 4.0
     
     
     #chart_options.useInputMeshUvs =  False
