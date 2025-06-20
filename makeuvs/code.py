@@ -9,11 +9,15 @@ def mesh_uv_wrap(mesh):
         mesh = mesh.dump(concatenate=True)
 
     myAtlas = xatlas.Atlas()
+
+    vmapping, indices, uvs = xatlas.parametrize(mesh.vertices, mesh.faces)
+
+
     myAtlas.add_mesh(mesh.vertices, mesh.faces)
     myAtlas.generate()
 
-    pack_options = xatlas.PackOptions()
-    pack_options.create_image = True
+    #pack_options = xatlas.PackOptions()
+    #pack_options.create_image = True
     #pack_options.maxChartSize = 4096
     #pack_options.padding = 1
     #pack_options.resolution = 4096
@@ -33,14 +37,14 @@ def mesh_uv_wrap(mesh):
     #chart_options.useInputMeshUvs =  False
     #chart_options.fixWinding = False
     
-    myAtlas.generate(pack_options=pack_options)
-    myAtlas.chart_image        # Debug image of the first atlas
+    #myAtlas.generate(pack_options=pack_options)
+    #myAtlas.chart_image        # Debug image of the first atlas
 
     #myAtlas.generate(pack_options=pack_options, chart_options = chart_options)
     image = Image.new('RGB',(1024,1024),"rgb(255,0,255)")
-    image = myAtlas.chart_image
+    #image = myAtlas.chart_image
 
-    vmapping, indices, uvs = myAtlas[0]
+    #vmapping, indices, uvs = myAtlas[0]
 
     mesh.vertices = mesh.vertices[vmapping]
     mesh.faces = indices
