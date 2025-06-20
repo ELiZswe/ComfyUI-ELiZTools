@@ -7,7 +7,7 @@ import numpy as np
 
 from xatlas import PackOptions, ChartOptions
 
-def mesh_uv_wrap(mesh, maxIterations):
+def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations):
     if isinstance(mesh, trimesh.Scene):
         mesh = mesh.dump(concatenate=True)
 
@@ -70,8 +70,9 @@ def mesh_uv_wrap(mesh, maxIterations):
     #chart_options.straightnessWeight = 6.0
     #chart_options.normalSeamWeight = 4.0
     #chart_options.textureSeamWeight = 0.5
-    #chart_options.maxCost = 2.0
-    chart_options.max_cost = 4
+    #chart_options.maxCost = 1.0
+    chart_options.max_chart_area = max_chart_area
+    chart_options.max_cost = max_cost
     chart_options.max_iterations = maxIterations  #org = 1
     
     

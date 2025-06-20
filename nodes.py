@@ -15,6 +15,8 @@ class ELiZMeshUVWrap:
                 "trimesh": ("TRIMESH",),
             },
             "optional": {
+                "max_chart_area": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 8.0}),
+                "max_cost": ("FLOAT", {"default": 1.0, "min": 1.0, "max": 8.0}),
                 "maxIterations": ("INT", {"default": 1, "min": 1, "max": 32}),
             }            
         }
@@ -24,9 +26,9 @@ class ELiZMeshUVWrap:
     FUNCTION = "process"
     CATEGORY = "ELiZTools"
 
-    def process(self, trimesh, maxIterations):
+    def process(self, trimesh, max_chart_area, max_cost, maxIterations):
         from .makeuvs.code import mesh_uv_wrap
-        trimesh, UVImage = mesh_uv_wrap(trimesh, maxIterations)
+        trimesh, UVImage = mesh_uv_wrap(trimesh, max_chart_area, max_cost, maxIterations)
         return (trimesh, UVImage)
 
 NODE_CLASS_MAPPINGS = {
