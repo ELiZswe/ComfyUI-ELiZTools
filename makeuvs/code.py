@@ -1,5 +1,6 @@
 import trimesh
 import xatlas
+from PIL import Image
 #import numpy as np
 from xatlas import PackOptions, ChartOptions
 
@@ -32,8 +33,9 @@ def mesh_uv_wrap(mesh):
     #chart_options.fixWinding = False
 
     myAtlas.generate(pack_options=pack_options, chart_options = chart_options)
+    myAtlas.chart_image
 
-    image = myAtlas.chart_image
+    image = myAtlas.get_chart_image(0) 
 
     vmapping, indices, uvs = myAtlas[0]
 
