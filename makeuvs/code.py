@@ -8,13 +8,13 @@ def mesh_uv_wrap(mesh):
     if isinstance(mesh, trimesh.Scene):
         mesh = mesh.dump(concatenate=True)
 
-    myAtlas = xatlas.Atlas()
+    #myAtlas = xatlas.Atlas()
 
     vmapping, indices, uvs = xatlas.parametrize(mesh.vertices, mesh.faces)
 
 
-    myAtlas.add_mesh(mesh.vertices, mesh.faces)
-    myAtlas.generate()
+    #myAtlas.add_mesh(mesh.vertices, mesh.faces)
+    #myAtlas.generate()
 
     #pack_options = xatlas.PackOptions()
     #pack_options.create_image = True
@@ -24,7 +24,7 @@ def mesh_uv_wrap(mesh):
     #pack_options.blockAlign = True
     #pack_options.bruteForce = True
 
-    chart_options = xatlas.ChartOptions()
+    #chart_options = xatlas.ChartOptions()
     #chart_options.maxChartArea = 0.0
     #chart_options.maxBoundaryLength = 0.0
     #chart_options.normalDeviationWeight = 2.0
