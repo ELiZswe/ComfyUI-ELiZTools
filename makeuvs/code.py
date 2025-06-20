@@ -1,5 +1,6 @@
 import trimesh
 import xatlas
+import numpy as np
 from xatlas import PackOptions, ChartOptions
 
 def mesh_uv_wrap(mesh):
@@ -16,7 +17,7 @@ def mesh_uv_wrap(mesh):
     #packOptions.blockAlign = True
     #packOptions.bruteForce = True
     packOptions.create_image = True
-    
+
     chartOptions = ChartOptions()
     #chartOptions.maxChartArea = 0.0
     #chartOptions.maxBoundaryLength = 0.0
