@@ -78,14 +78,13 @@ def mesh_uv_wrap(mesh, maxIterations):
     myAtlas.generate(pack_options=pack_options, chart_options = chart_options)
 
     myImage = myAtlas.get_chart_image(0)        # Debug image of the first atlas
+    UVImages = Image.fromarray(myImage)
+    
     #UVImage = Image.new('RGB',(1024,1024),"rgb(255,0,255)")
     vmapping, indices, uvs = myAtlas[0]
 
     mesh.vertices = mesh.vertices[vmapping]
     mesh.faces = indices
     mesh.visual.uv = uvs
-    
-    dup = copy.deepcopy(myImage.cpu().numpy())
-    UVImages = torch.from_numpy(dup)
-    
+       
     return mesh, UVImages
