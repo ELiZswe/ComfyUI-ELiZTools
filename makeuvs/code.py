@@ -33,7 +33,8 @@ def mesh_uv_wrap(mesh):
     #chart_options.fixWinding = False
 
     myAtlas.generate(pack_options=pack_options, chart_options = chart_options)
-    image = myAtlas.chart_image
+    image = Image.new('RGB',(1024,1024),"rgb(255,0,255)")
+    #image = myAtlas.chart_image
 
     vmapping, indices, uvs = myAtlas[0]
 
