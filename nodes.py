@@ -16,7 +16,7 @@ class ELiZMeshUVWrap:
             },
             "optional": {
                 "max_chart_area": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 8.0}),
-                "max_cost": ("FLOAT", {"default": 1.0, "min": 1.0, "max": 8.0}),
+                "max_cost": ("FLOAT", {"default": 2.0, "min": 2.0, "max": 24.0}),
                 "maxIterations": ("INT", {"default": 1, "min": 1, "max": 32}),
             }            
         }
