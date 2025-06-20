@@ -1,2 +1,6 @@
 # ComfyUI-ELiZTools
 Misc ComyUI nodes I felt I needed to create myself
+
+
+Node:
+    ELiZ-MakeUVs
