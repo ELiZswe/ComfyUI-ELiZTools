@@ -15,7 +15,7 @@ class ELiZMeshUVWrap:
                 "trimesh": ("TRIMESH",),
             },
             "optional": {
-                "maxIterations": ("INT", {"default": 1, "min": 1, "max": 4}),
+                "maxIterations": ("INT", {"default": 1, "min": 1, "max": 8}),
             }            
         }
 
