@@ -30,5 +30,5 @@ NODE_CLASS_MAPPINGS = {
     }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "Hy3DMeshUVWrap": "ELiZ Mesh UV Wrap",
+    "ELiZMeshUVWrap": "ELiZ Mesh UV Wrap",
     }
