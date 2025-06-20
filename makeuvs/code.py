@@ -49,5 +49,5 @@ def mesh_uv_wrap(mesh):
     mesh.vertices = mesh.vertices[vmapping]
     mesh.faces = indices
     mesh.visual.uv = uvs
-
+    
     return mesh, image
