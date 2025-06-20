@@ -83,7 +83,7 @@ def mesh_uv_wrap(mesh, maxIterations):
     myHeight = myAtlas.height      # Height of the atlas
     
     myImage = myAtlas.get_chart_image(0)        # Debug image of the first atlas
-    UVImages = Image.fromarray(np.uint32(myImage)).convert('RGB')
+    UVImages = Image.fromarray(np.uint8(myImage)).convert('RGB')
     
     #UVImages.append(Image.new('RGB',(1024,1024),"rgb(255,0,255)"))
 
