@@ -24,7 +24,7 @@ class ELiZMeshUVWrap:
     def process(self, trimesh):
         from .makeuvs.code import mesh_uv_wrap
         trimesh = mesh_uv_wrap(trimesh)
-        UVMap = Image()
+        UVMap = mesh_uv_wrap(Image)
         return (trimesh, UVMap)
 
 NODE_CLASS_MAPPINGS = {
