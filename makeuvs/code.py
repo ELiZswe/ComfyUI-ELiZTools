@@ -78,15 +78,12 @@ def mesh_uv_wrap(mesh, maxIterations):
 
     #myImage = myAtlas.get_chart_image(0)        # Debug image of the first atlas
     UVImage = Image.new('RGB',(1024,1024),"rgb(255,0,255)")
-    #UVImage_np = (UVImage.squeeze(0).cpu().numpy() * 255).astype(np.uint8)
     vmapping, indices, uvs = myAtlas[0]
 
     mesh.vertices = mesh.vertices[vmapping]
     mesh.faces = indices
     mesh.visual.uv = uvs
     
-    #texture_tensor = torch.from_numpy(UVImage_np).float() / 255.0
-    #texture_tensor = texture_tensor.unsqueeze(0)
     UVImages=[]
     UVImages+=UVImage
 
