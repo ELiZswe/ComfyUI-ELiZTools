@@ -1,6 +1,6 @@
 import trimesh
 import xatlas
-#import torch
+import torch
 from PIL import Image
 #import numpy as np
 from xatlas import PackOptions, ChartOptions
@@ -84,7 +84,7 @@ def mesh_uv_wrap(mesh, maxIterations):
     mesh.faces = indices
     mesh.visual.uv = uvs
     
-    UVImages=[]
-    UVImages.append(myImage)
+    np_img = myImage
+    UVImages = torch.from_numpy(np_img)
     
     return mesh, UVImages
