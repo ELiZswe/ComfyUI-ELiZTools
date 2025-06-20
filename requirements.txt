@@ -1,0 +1,7 @@
+trimesh
+xatlas
+pymeshlab
+pygltflib
+scikit-learn
+scikit-image
+pybind11
