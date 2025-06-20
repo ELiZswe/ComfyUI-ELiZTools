@@ -18,10 +18,10 @@ def mesh_uv_wrap(mesh, shouldwedosomething):
     pack_options = xatlas.PackOptions()
     pack_options.create_image = True
     #pack_options.maxChartSize = 4096
-    #pack_options.padding = 1
-    #pack_options.resolution = 4096
-    #pack_options.blockAlign = True
-    pack_options.bruteForce = True
+    pack_options.padding = 1
+    pack_options.resolution = 4096
+    pack_options.blockAlign = True
+    #pack_options.bruteForce = True
 
     chart_options = xatlas.ChartOptions()
     #chart_options.maxChartArea = 0.0
