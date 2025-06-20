@@ -3,7 +3,8 @@ import xatlas
 import torch
 import copy
 from PIL import Image
-#import numpy as np
+import numpy as np
+
 from xatlas import PackOptions, ChartOptions
 
 def mesh_uv_wrap(mesh, maxIterations):
@@ -77,11 +78,15 @@ def mesh_uv_wrap(mesh, maxIterations):
     
     myAtlas.generate(pack_options=pack_options, chart_options = chart_options)
 
-    UVImages=[]
+    
     myImage = myAtlas.get_chart_image(0)        # Debug image of the first atlas
-    UVImages.append(Image.fromarray(myImage))
+    UVImages = Image.fromarray(myImage)
+
+    UVImages =Image.fromarray(np.clip(255. * myImage.cpu().numpy().squeeze(), 0, 255).astype(np.uint8))
+
+
     #UVImages.append(Image.new('RGB',(1024,1024),"rgb(255,0,255)"))
-    print (myImage.shape)
+
     vmapping, indices, uvs = myAtlas[0]
 
     mesh.vertices = mesh.vertices[vmapping]
