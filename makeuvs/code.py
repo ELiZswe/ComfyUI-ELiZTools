@@ -29,7 +29,7 @@ def mesh_uv_wrap(mesh):
     #chartOptions.useInputMeshUvs =  False
     #chartOptions.fixWinding = False
 
-    myAtlas.Generate(pack_options=packOptions, chart_options = chartOptions, )
+    myAtlas.generate(pack_options=packOptions, chart_options = chartOptions, )
     vmapping, indices, uvs = myAtlas[0]
 
     mesh.vertices = mesh.vertices[vmapping]

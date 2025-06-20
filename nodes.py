@@ -4,6 +4,7 @@ import os
 #from pathlib import Path
 #import numpy as np
 #import json
+from PIL import Image
 import trimesh as Trimesh
    
 class ELiZMeshUVWrap:
@@ -15,8 +16,8 @@ class ELiZMeshUVWrap:
             },
         }
 
-    RETURN_TYPES = ("TRIMESH", "Image", )
-    RETURN_NAMES = ("trimesh", "UVMap")
+    RETURN_TYPES = ("TRIMESH", "trimesh", )
+    RETURN_NAMES = ("IMAGE", "UVMap")
     FUNCTION = "process"
     CATEGORY = "ELiZTools"
 
