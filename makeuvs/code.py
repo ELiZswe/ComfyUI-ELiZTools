@@ -19,7 +19,7 @@ def mesh_uv_wrap(mesh, shouldwedosomething):
     pack_options.create_image = True
     #pack_options.maxChartSize = 4096
     #pack_options.padding = 1
-    pack_options.resolution = 4096
+    #pack_options.resolution = 4096
     #pack_options.blockAlign = True
     pack_options.bruteForce = True
 
