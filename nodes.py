@@ -14,17 +14,20 @@ class ELiZMeshUVWrap:
             "required": {
                 "trimesh": ("TRIMESH",),
             },
+            "optional": {
+                "shouldwedosomething": ("BOOLEAN",),
+            }            
         }
 
-    RETURN_TYPES = ("TRIMESH", "IMAGE", )
-    RETURN_NAMES = ("trimesh", "UVMap",)
+    RETURN_TYPES = ("TRIMESH", "IMAGE",)
+    RETURN_NAMES = ("trimesh", "UVImage",)
     FUNCTION = "process"
     CATEGORY = "ELiZTools"
 
     def process(self, trimesh):
         from .makeuvs.code import mesh_uv_wrap
-        trimesh, UVMap = mesh_uv_wrap(trimesh)
-        return (trimesh, UVMap)
+        trimesh, UVImage = mesh_uv_wrap(trimesh)
+        return (trimesh, UVImage)
 
 NODE_CLASS_MAPPINGS = {
     "ELiZMeshUVWrap": ELiZMeshUVWrap,
