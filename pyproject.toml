@@ -1,0 +1,15 @@
+[project]
+name = "comfyui-eliztools"
+description = "ELIZ Tools"
+version = "1.0.1"
+license = {file = "LICENSE"}
+dependencies = ["trimesh", "huggingface_hub","einops","opencv-python","transformers","xatlas","pymeshlab","pygltflib","scikit-learn","scikit-image","pybind11"]
+
+[project.urls]
+Repository = "https://github.com/ELiZswe/ComfyUI-ELiZTools.git"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = "ELiZ"
+DisplayName = "ComfyUI-ELiZTools"
+Icon = ""
