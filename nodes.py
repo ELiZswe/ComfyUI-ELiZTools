@@ -16,7 +16,7 @@ class ELiZMeshUVWrap:
             },
         }
 
-    RETURN_TYPES = ("TRIMESH", "IMAGE", )
+    RETURN_TYPES = ("TRIMESH", "UVMap", )
     RETURN_NAMES = ("trimesh", "image",)
     FUNCTION = "process"
     CATEGORY = "ELiZTools"
