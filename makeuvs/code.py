@@ -6,7 +6,7 @@ def mesh_uv_wrap(mesh):
     if isinstance(mesh, trimesh.Scene):
         mesh = mesh.dump(concatenate=True)
 
-    atlas = xatlas.atlas()
+    atlas = xatlas()
     atlas.parametrize(mesh.vertices, mesh.faces)
 
     packOptions = PackOptions()
