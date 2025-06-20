@@ -1,6 +1,6 @@
 import trimesh
 import xatlas
-import numpy as np
+#import numpy as np
 from xatlas import PackOptions, ChartOptions
 
 def mesh_uv_wrap(mesh):
@@ -33,7 +33,7 @@ def mesh_uv_wrap(mesh):
 
     myAtlas.generate(pack_options=packOptions, chart_options = chartOptions, )
 
-    Image = myAtlas.chart_image()
+    image = myAtlas.chart_image
 
     vmapping, indices, uvs = myAtlas[0]
 
@@ -41,4 +41,4 @@ def mesh_uv_wrap(mesh):
     mesh.faces = indices
     mesh.visual.uv = uvs
 
-    return mesh, Image
+    return mesh, image
