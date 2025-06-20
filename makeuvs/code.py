@@ -85,6 +85,6 @@ def mesh_uv_wrap(mesh, maxIterations):
     mesh.visual.uv = uvs
     
     UVImages=[]
-    UVImages+=UVImage
-
+    UVImages.append(UVImage)
+    
     return mesh, UVImages
