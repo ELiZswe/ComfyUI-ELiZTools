@@ -33,7 +33,7 @@ def mesh_uv_wrap(mesh):
 
     myAtlas.generate(pack_options=packOptions, chart_options = chartOptions, )
 
-    image = myAtlas.chart_image(0)
+    image = myAtlas.chart_image
 
     vmapping, indices, uvs = myAtlas[0]
 
