@@ -84,9 +84,20 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations):
     
     myWidth = myAtlas.width       # Width of the atlas 
     myHeight = myAtlas.height      # Height of the atlas
+    myUtil = myAtlas.utilization
+
     print ("maxIterations: " + str(maxIterations))
+    print ("max_chart_area: " + str(max_chart_area))
+    print ("max_cost: " + str(max_cost))
     print ("Width: " + str(myWidth))
     print ("Height: " + str(myHeight))
+    print ("Utilization: " + str(myUtil))
+
+max_chart_area,
+max_cost,
+
+
+
     myImage = myAtlas.get_chart_image(0)        # Debug image of the first atlas
     UVImages = Image.fromarray(np.uint8(myImage)).convert('RGB')
     
