@@ -4,7 +4,7 @@ from PIL import Image
 #import numpy as np
 from xatlas import PackOptions, ChartOptions
 
-def mesh_uv_wrap(mesh):
+def mesh_uv_wrap(mesh, shouldwedosomething):
     if isinstance(mesh, trimesh.Scene):
         mesh = mesh.dump(concatenate=True)
 
