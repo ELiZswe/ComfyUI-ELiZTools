@@ -63,21 +63,18 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations, resolution, bloc
     chart_options.max_iterations = maxIterations
     chart_options.fix_winding = fix_winding
     #chart_options.straightness_weight = 4.0
-    
-    
     #chart_options.useInputMeshUvs =  False
-    #chart_options.fixWinding = False
     
     myAtlas.generate(pack_options=pack_options, chart_options = chart_options)
     
-    print ("maxIterations: "  + str(maxIterations))
-    print ("max_chart_area: " + str(max_chart_area))
-    print ("max_cost: "       + str(max_cost))
-    print ("Width: "          + str(myAtlas.width))
-    print ("Height: "         + str(myAtlas.height))
-    print ("Utilization: "    + str(myAtlas.utilization))
-    print ("atlasCount: "     + str(myAtlas.atlas_count))
-    print ("chartCount: "     + str(myAtlas.chart_count))
+    #print ("maxIterations: "  + str(maxIterations))
+    #print ("max_chart_area: " + str(max_chart_area))
+    #print ("max_cost: "       + str(max_cost))
+    #print ("Width: "          + str(myAtlas.width))
+    #print ("Height: "         + str(myAtlas.height))
+    #print ("Utilization: "    + str(myAtlas.utilization))
+    #print ("atlasCount: "     + str(myAtlas.atlas_count))
+    #print ("chartCount: "     + str(myAtlas.chart_count))
    
     #Create and nparray from the Chart
     np_myimage = myAtlas.get_chart_image(0)
@@ -95,7 +92,7 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations, resolution, bloc
     image_transformed = transform_pipeline(UVImage)
     image_transformed = image_transformed.permute(1, 2, 0).unsqueeze(0)
 
-    #the built in code
+    #the built in code4
     vmapping, indices, uvs = myAtlas[0]
     #vmapping, indices, uvs = xatlas.parametrize(mesh.vertices, mesh.faces)
 
