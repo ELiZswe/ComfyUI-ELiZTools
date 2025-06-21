@@ -7,7 +7,7 @@ from PIL import Image
 import numpy as np
 from xatlas import PackOptions, ChartOptions
 
-def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations, resolution, blockAlign):
+def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations, resolution, blockAlign, fix_winding, rotate_charts, rotate_charts_to_axis, padding, bruteForce):
     if isinstance(mesh, trimesh.Scene):
         mesh = mesh.dump(concatenate=True)
 
@@ -34,14 +34,12 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations, resolution, bloc
     pack_options = xatlas.PackOptions()
     pack_options.create_image = True
     #pack_options.max_chart_size = 4096
-    #pack_options.padding = 1
     pack_options.resolution = resolution
-    pack_options.blockAlign = True
-    pack_options.bruteForce = blockAlign
-    #pack_options.rotate_charts = True
-    #pack_options.rotate_charts_to_axis = True
-
-
+    pack_options.blockAlign = blockAlign
+    pack_options.rotate_charts = rotate_charts
+    pack_options.rotate_charts_to_axis = rotate_charts_to_axis
+    pack_options.padding = padding
+    pack_options.bruteForce = bruteForce
 
     chart_options = xatlas.ChartOptions()
 
@@ -70,6 +68,7 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations, resolution, bloc
     chart_options.max_chart_area = max_chart_area
     chart_options.max_cost = max_cost
     chart_options.max_iterations = maxIterations
+    chart_options.fix_winding = fix_winding
     #chart_options.straightness_weight = 4.0
     
     

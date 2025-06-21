@@ -20,6 +20,11 @@ class ELiZMeshUVWrap:
                 "maxIterations": ("INT", {"default": 1, "min": 1, "max": 32, "tooltip": "Number of iterations of the chart growing and seeding phases. Higher values result in better charts."}),
                 "resolution": ("INT", {"default": 0, "min": 0, "max": 4096, "tooltip": "If 0, generate a single atlas with texelsPerUnit determining the final resolution. If not 0, and texelsPerUnit is not 0, generate one or more atlases with that exact resolution. If not 0, and texelsPerUnit is 0, texelsPerUnit is estimated to approximately match the resolution."}),
                 "blockAlign": ("BOOLEAN", {"default": False, "tooltip": "Align charts to 4x4 blocks. Also improves packing speed, since there are fewer possible chart locations to consider."}),
+                "fix_winding": ("BOOLEAN", {"default": False, "tooltip": "Enforce consistent texture coordinate winding."}),
+                "rotate_charts": ("BOOLEAN", {"default": True, "tooltip": "Rotate charts to improve packing."}),
+                "rotate_charts_to_axis": ("BOOLEAN", {"default": True, "tooltip": "Rotate charts to the axis of their convex hull."}),
+                "padding": ("INT", {"default": 0, "min": 0, "max": 32, "tooltip": "Number of pixels to pad charts with"}),
+                "bruteForce": ("BOOLEAN", {"default": False, "tooltip": "Slower, but gives the best result. If false, use random chart placement."}),
             }            
         }
 
@@ -28,9 +33,9 @@ class ELiZMeshUVWrap:
     FUNCTION = "process"
     CATEGORY = "ELiZTools"
 
-    def process(self, trimesh, max_chart_area, max_cost, maxIterations, resolution, blockAlign):
+    def process(self, trimesh, max_chart_area, max_cost, maxIterations, resolution, blockAlign, fix_winding, rotate_charts, rotate_charts_to_axis, padding, bruteForce):
         from .makeuvs.code import mesh_uv_wrap
-        trimesh, UVImage = mesh_uv_wrap(trimesh, max_chart_area, max_cost, maxIterations, resolution, blockAlign)
+        trimesh, UVImage = mesh_uv_wrap(trimesh, max_chart_area, max_cost, maxIterations, resolution, blockAlign, fix_winding, rotate_charts, rotate_charts_to_axis, padding, bruteForce)
         return (trimesh, UVImage)
 
 NODE_CLASS_MAPPINGS = {
