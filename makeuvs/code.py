@@ -1,13 +1,13 @@
 import trimesh
 import xatlas
 import torch
+import torchvision.transforms as transforms
 import copy
 from PIL import Image
 import numpy as np
-
 from xatlas import PackOptions, ChartOptions
 
-def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations):
+def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations, resolution, blockAlign):
     if isinstance(mesh, trimesh.Scene):
         mesh = mesh.dump(concatenate=True)
 
@@ -31,15 +31,13 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations):
     #    .def_readwrite("rotate_charts_to_axis", &xatlas::PackOptions::rotateChartsToAxis, "Rotate charts to the axis of their convex hull.")
     #    .def_readwrite("rotate_charts", &xatlas::PackOptions::rotateCharts, "Rotate charts to improve packing.");
 
-
-
     pack_options = xatlas.PackOptions()
     pack_options.create_image = True
     #pack_options.max_chart_size = 4096
     #pack_options.padding = 1
-    #pack_options.resolution = 4096
-    #pack_options.blockAlign = True
-    #pack_options.bruteForce = True
+    pack_options.resolution = resolution
+    pack_options.blockAlign = True
+    pack_options.bruteForce = blockAlign
     #pack_options.rotate_charts = True
     #pack_options.rotate_charts_to_axis = True
 
@@ -79,24 +77,35 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations):
     #chart_options.fixWinding = False
     
     myAtlas.generate(pack_options=pack_options, chart_options = chart_options)
-
-    myWidth = myAtlas.width       # Width of the atlas 
-    myHeight = myAtlas.height      # Height of the atlas
-    myUtil = myAtlas.utilization
-
-    print ("maxIterations: " + str(maxIterations))
+    
+    print ("maxIterations: "  + str(maxIterations))
     print ("max_chart_area: " + str(max_chart_area))
-    print ("max_cost: " + str(max_cost))
-    print ("Width: " + str(myWidth))
-    print ("Height: " + str(myHeight))
-    print ("Utilization: " + str(myUtil))
+    print ("max_cost: "       + str(max_cost))
+    print ("Width: "          + str(myAtlas.width))
+    print ("Height: "         + str(myAtlas.height))
+    print ("Utilization: "    + str(myAtlas.utilization))
+    print ("atlasCount: "     + str(myAtlas.atlas_count))
+    print ("chartCount: "     + str(myAtlas.chart_count))
+   
+    #Create and nparray from the Chart
+    np_myimage = myAtlas.get_chart_image(0)
+    UVImage = Image.fromarray(np.uint8(np_myimage))
+    if resolution < 1:
+        resolution = 1024
 
-    myImage = myAtlas.get_chart_image(0)
-    UVImages = Image.fromarray(np.uint8(myImage)).convert('RGB')
+    transform_pipeline = transforms.Compose([
+        #transforms.Resize((resolution, resolution)),
+        transforms.ToTensor(),
+    ])
+    image_transformed = transform_pipeline(UVImage)
+    image_transformed = image_transformed.permute(1, 2, 0).unsqueeze(0)
+
+
+    #the built in code
     vmapping, indices, uvs = myAtlas[0]
-
     mesh.vertices = mesh.vertices[vmapping]
     mesh.faces = indices
     mesh.visual.uv = uvs
-       
-    return mesh, UVImages
+    
+    return mesh, image_transformed
+    
