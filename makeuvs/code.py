@@ -16,7 +16,6 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations, resolution, bloc
     
     #These Can be used
     #    .def_readwrite("max_chart_size", &xatlas::PackOptions::maxChartSize, "Charts larger than this will be scaled down. 0 means no limit.")
-    #    .def_readwrite("padding", &xatlas::PackOptions::padding, "Number of pixels to pad charts with.")
     #    .def_readwrite("texels_per_unit", &xatlas::PackOptions::texelsPerUnit, R"doc(Unit to texel scale. e.g. a 1x1 quad with texelsPerUnit of 32 will take up approximately 32x32 texels in the atlas.
     #If 0, an estimated value will be calculated to approximately match the given resolution.
     #If resolution is also 0, the estimated value will approximately match a 1024x1024 atlas.
@@ -25,11 +24,8 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations, resolution, bloc
     #If not 0, and texelsPerUnit is not 0, generate one or more atlases with that exact resolution. 
     #If not 0, and texelsPerUnit is 0, texelsPerUnit is estimated to approximately match the resolution.)doc")
     #    .def_readwrite("bilinear", &xatlas::PackOptions::bilinear, "Leave space around charts for texels that would be sampled by bilinear filtering.")
-    #    .def_readwrite("blockAlign", &xatlas::PackOptions::blockAlign, "Align charts to 4x4 blocks. Also improves packing speed, since there are fewer possible chart locations to consider.")
     #    .def_readwrite("bruteForce", &xatlas::PackOptions::bruteForce, "Slower, but gives the best result. If false, use random chart placement.")
     #    .def_readwrite("create_image", &xatlas::PackOptions::createImage, "Create Atlas::image.")
-    #    .def_readwrite("rotate_charts_to_axis", &xatlas::PackOptions::rotateChartsToAxis, "Rotate charts to the axis of their convex hull.")
-    #    .def_readwrite("rotate_charts", &xatlas::PackOptions::rotateCharts, "Rotate charts to improve packing.");
 
     pack_options = xatlas.PackOptions()
     pack_options.create_image = True
@@ -44,7 +40,6 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations, resolution, bloc
     chart_options = xatlas.ChartOptions()
 
         #These can be used
-        #.def_readwrite("max_chart_area", &xatlas::ChartOptions::maxChartArea)
         #.def_readwrite("max_boundary_length", &xatlas::ChartOptions::maxBoundaryLength)
         #.def_readwrite("normal_deviation_weight", &xatlas::ChartOptions::normalDeviationWeight)
         #.def_readwrite("roundness_weight", &xatlas::ChartOptions::roundnessWeight)
@@ -52,9 +47,7 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations, resolution, bloc
         #.def_readwrite("normal_seam_weight", &xatlas::ChartOptions::normalSeamWeight)
         #.def_readwrite("texture_seam_weight", &xatlas::ChartOptions::textureSeamWeight)
         #.def_readwrite("max_cost", &xatlas::ChartOptions::maxCost)
-        #.def_readwrite("max_iterations", &xatlas::ChartOptions::maxIterations)
         #.def_readwrite("use_input_mesh_uvs", &xatlas::ChartOptions::useInputMeshUvs)
-        #.def_readwrite("fix_winding", &xatlas::ChartOptions::fixWinding);
 
 
     #chart_options.maxChartArea = 0.0
@@ -89,22 +82,30 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations, resolution, bloc
     #Create and nparray from the Chart
     np_myimage = myAtlas.get_chart_image(0)
     UVImage = Image.fromarray(np.uint8(np_myimage))
+    UVImage = UVImage.transpose(Image.FLIP_TOP_BOTTOM)
+
     if resolution < 1:
+        #From this point on, this is only used for Image output
         resolution = 1024
 
     transform_pipeline = transforms.Compose([
-        #transforms.Resize((resolution, resolution)),
+        transforms.Resize((resolution, resolution)),
         transforms.ToTensor(),
     ])
     image_transformed = transform_pipeline(UVImage)
     image_transformed = image_transformed.permute(1, 2, 0).unsqueeze(0)
 
-
     #the built in code
     vmapping, indices, uvs = myAtlas[0]
+    #vmapping, indices, uvs = xatlas.parametrize(mesh.vertices, mesh.faces)
+
     mesh.vertices = mesh.vertices[vmapping]
     mesh.faces = indices
     mesh.visual.uv = uvs
-    
+
+    material = trimesh.visual.texture.SimpleMaterial(image=UVImage)
+    color_visuals = trimesh.visual.TextureVisuals(uv=uvs, image=UVImage, material=material)
+    mesh.visual = color_visuals
+
     return mesh, image_transformed
     
