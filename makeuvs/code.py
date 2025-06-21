@@ -11,8 +11,6 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations):
     if isinstance(mesh, trimesh.Scene):
         mesh = mesh.dump(concatenate=True)
 
-    #vmapping, indices, uvs = xatlas.parametrize(mesh.vertices, mesh.faces)
-
     myAtlas = xatlas.Atlas()
     myAtlas.add_mesh(mesh.vertices, mesh.faces)
     
@@ -82,7 +80,6 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations):
     
     myAtlas.generate(pack_options=pack_options, chart_options = chart_options)
 
-    
     myWidth = myAtlas.width       # Width of the atlas 
     myHeight = myAtlas.height      # Height of the atlas
     myUtil = myAtlas.utilization
@@ -94,11 +91,8 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations):
     print ("Height: " + str(myHeight))
     print ("Utilization: " + str(myUtil))
 
-    myImage = myAtlas.get_chart_image(0)        # Debug image of the first atlas
+    myImage = myAtlas.get_chart_image(0)
     UVImages = Image.fromarray(np.uint8(myImage)).convert('RGB')
-    
-    #UVImages.append(Image.new('RGB',(1024,1024),"rgb(255,0,255)"))
-
     vmapping, indices, uvs = myAtlas[0]
 
     mesh.vertices = mesh.vertices[vmapping]
