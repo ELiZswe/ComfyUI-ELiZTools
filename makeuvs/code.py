@@ -100,9 +100,15 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations, resolution, bloc
     mesh.faces = indices
     mesh.visual.uv = uvs
 
-    material = trimesh.visual.texture.SimpleMaterial(image=UVImage)
-    color_visuals = trimesh.visual.TextureVisuals(uv=uvs, image=UVImage, material=material)
-    mesh.visual = color_visuals
+    texture_data = None
+    material = trimesh.visual.texture.SimpleMaterial(image=texture_data, diffuse=(255, 255, 255))
+    texture_visuals = trimesh.visual.TextureVisuals(uv=mesh.visual.uv, image=texture_data, material=material)
+    mesh.visual = texture_visuals
+
+
+    #material = trimesh.visual.texture.SimpleMaterial(image=UVImage)
+    #color_visuals = trimesh.visual.TextureVisuals(uv=uvs, image=UVImage, material=material)
+    #mesh.visual = color_visuals
 
     return mesh, image_transformed
     
