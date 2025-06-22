@@ -17,7 +17,7 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations, resolution, bloc
     #Using the names from here:
     #https://github.com/mworchel/xatlas-python/blob/main/src/options.cpp
     pack_options = xatlas.PackOptions()
-    pack_options.create_image             = create_image
+    pack_options.create_image             = True       #create_image
     pack_options.max_chart_size           = max_chart_size
     pack_options.padding                  = padding
     pack_options.texels_per_unit          = texels_per_unit
@@ -58,8 +58,6 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations, resolution, bloc
         ])
         image_transformed = transform_pipeline(UVImage)
         image_transformed = image_transformed.permute(1, 2, 0).unsqueeze(0)
-    else:
-        image_transformed = None    
 
     #the built in code4
     vmapping, indices, uvs = myAtlas[0]
