@@ -34,7 +34,7 @@ class ELiZMeshUVWrap:
                 "bilinear":                ("BOOLEAN", {"default": True,                        "tooltip": "Pack Option: Leave space around charts for texels that would be sampled by bilinear filtering."}),
                 "blockAlign":              ("BOOLEAN", {"default": False,                       "tooltip": "Pack Option: Align charts to 4x4 blocks. Also improves packing speed, since there are fewer possible chart locations to consider."}),
                 "bruteForce":              ("BOOLEAN", {"default": False,                       "tooltip": "Pack Option: Slower, but gives the best result. If false, use random chart placement."}),
-                "create_image":            ("BOOLEAN", {"default": False,                       "tooltip": "Pack Option: Create Atlas::image"}),
+                "create_image":            ("BOOLEAN", {"default": True,                       "tooltip": "Pack Option: Create Atlas::image"}),
                 "rotate_charts":           ("BOOLEAN", {"default": True,                        "tooltip": "Pack Option: Rotate charts to improve packing."}),
                 "rotate_charts_to_axis":   ("BOOLEAN", {"default": True,                        "tooltip": "Pack Option: Rotate charts to the axis of their convex hull."}),
             }            
