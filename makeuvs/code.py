@@ -61,6 +61,8 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations, resolution, bloc
     else:
         image_transformed = None
 
+    Utilization = myAtlas.utilization  
+
     #the built in code4
     vmapping, indices, uvs = myAtlas[0]
     
@@ -78,5 +80,5 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations, resolution, bloc
     #color_visuals = trimesh.visual.TextureVisuals(uv=uvs, image=UVImage, material=material)
     #mesh.visual = color_visuals
 
-    return mesh, image_transformed
+    return mesh, image_transformed, Utilization
     
