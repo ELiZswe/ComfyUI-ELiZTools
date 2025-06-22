@@ -17,13 +17,15 @@ class ELiZMeshUVWrap:
             "optional": {
                 "max_chart_area":          ("FLOAT", {"default": 0.0, "min": 0.0, "max": 8.0,   "tooltip": "Chart Option: Don\'t grow charts to be larger than this. 0 means no limit."}),
                 "max_boundary_length":     ("FLOAT", {"default": 0.0, "min": 0.0, "max": 8.0,   "tooltip": "Chart Option: Don't grow charts to have a longer boundary than this. 0 means no limit."}),
-                "normal_deviation_weight": ("FLOAT", {"default": 2.0, "min": 0.0, "max": 8.0,   "tooltip": "Chart Option: Angle between face and average chart normal."}),
-                "roundness_weight":        ("FLOAT", {"default": 0.01, "min": 0.0, "max": 8.0,  "tooltip": "Chart Option: "}),
-                "straightness_weight":     ("FLOAT", {"default": 6.0, "min": 0.0, "max": 8.0,   "tooltip": "Chart Option: "}),
-                "normal_seam_weight":      ("FLOAT", {"default": 4.0, "min": 0.0, "max": 8.0,   "tooltip": "Chart Option: If > 1000, normal seams are fully respected."}),
-                "texture_seam_weight":     ("FLOAT", {"default": 0.5, "min": 0.0, "max": 8.0,   "tooltip": "Chart Option: "}),
+
+                "normal_deviation_weight": ("FLOAT", {"default": 2.0, "min": 0.0, "max": 32.0,   "tooltip": "Chart Option: Angle between face and average chart normal."}),
+                "roundness_weight":        ("FLOAT", {"default": 0.01, "min": 0.0, "max": 32.0,  "tooltip": "Chart Option: "}),
+                "straightness_weight":     ("FLOAT", {"default": 6.0, "min": 0.0, "max": 32.0,   "tooltip": "Chart Option: "}),
+                "normal_seam_weight":      ("FLOAT", {"default": 4.0, "min": 0.0, "max": 32.0,   "tooltip": "Chart Option: If > 1000, normal seams are fully respected."}),
+                "texture_seam_weight":     ("FLOAT", {"default": 0.5, "min": 0.0, "max": 32.0,   "tooltip": "Chart Option: "}),
+
                 "max_cost":                ("FLOAT", {"default": 2.0, "min": 2.0, "max": 24.0,  "tooltip": "Chart Option: If total of all metrics * weights > maxCost, don't grow chart. Lower values result in more charts."}),
-                "maxIterations":           ("INT", {"default": 1, "min": 1, "max": 32,          "tooltip": "Chart Option: Number of iterations of the chart growing and seeding phases. Higher values result in better charts."}),
+                "maxIterations":           ("INT", {"default": 1, "min": 1, "max": 100,          "tooltip": "Chart Option: Number of iterations of the chart growing and seeding phases. Higher values result in better charts."}),
                 "use_input_mesh_uvs":      ("BOOLEAN", {"default": False,                       "tooltip": "Chart Option: "}),
                 "fix_winding":             ("BOOLEAN", {"default": False,                       "tooltip": "Chart Option: Enforce consistent texture coordinate winding."}),
 
