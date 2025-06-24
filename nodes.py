@@ -24,7 +24,7 @@ class ELiZMeshUVWrap:
                 "normal_seam_weight":      ("FLOAT", {"default": 4.0, "min": 0.0, "max": 2000.0,  "tooltip": "Chart Option: If > 1000, normal seams are fully respected.  Default = 4.0"}),
                 "texture_seam_weight":     ("FLOAT", {"default": 0.5, "min": 0.0, "max": 2000.0,  "tooltip": "Chart Option: Default = 0.5"}),
 
-                "max_cost":                ("FLOAT", {"default": 2.0, "min": 2.0, "max": 2000.0,  "tooltip": "Chart Option: If total of all metrics * weights > maxCost, don't grow chart. Lower values result in more charts.  Default = 2.0"}),
+                "max_cost":                ("FLOAT", {"default": 2.0, "min": 0.0, "max": 2000.0,  "tooltip": "Chart Option: If total of all metrics * weights > maxCost, don't grow chart. Lower values result in more charts.  Default = 2.0"}),
                 "maxIterations":           ("INT", {"default": 1, "min": 1, "max": 100,           "tooltip": "Chart Option: Number of iterations of the chart growing and seeding phases. Higher values result in better charts.  Default = 1"}),
                 "use_input_mesh_uvs":      ("BOOLEAN", {"default": False,                         "tooltip": "Chart Option: Default = False"}),
                 "fix_winding":             ("BOOLEAN", {"default": False,                         "tooltip": "Chart Option: Enforce consistent texture coordinate winding.  Default = False"}),
@@ -42,7 +42,7 @@ class ELiZMeshUVWrap:
             }            
         }
 
-    RETURN_TYPES = ("TRIMESH", "IMAGE","INT")
+    RETURN_TYPES = ("TRIMESH", "IMAGE","STRING")
     RETURN_NAMES = ("trimesh", "UVImage","Utilization")
     FUNCTION = "process"
     CATEGORY = "ELiZTools"

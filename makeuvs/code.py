@@ -61,7 +61,7 @@ def mesh_uv_wrap(mesh, max_chart_area, max_cost, maxIterations, resolution, bloc
     else:
         image_transformed = None
 
-    Utilization = myAtlas.utilization  
+    Utilization = "{:.2%}".format(myAtlas.utilization)
 
     #the built in code4
     vmapping, indices, uvs = myAtlas[0]
